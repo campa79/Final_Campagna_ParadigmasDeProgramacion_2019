@@ -1,0 +1,33 @@
+{% extends "ingresado.html" %}
+
+{% block title %}Ultimas Ventas{% endblock %}
+
+{% block page_content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ultimas Ventas</title>
+</head>
+
+	<body>
+	<!-- Muestro el contenido de Ultimas Ventas -->
+	<h1><u>VER CSV - ULTIMAS VENTAS</u></h1>
+	<h2> </h2>
+
+	<table style="width:100%">
+		
+		{% for item in tabla | reverse()  %}
+    	<tr>
+    		{% for datos in item %}
+				<td>{{ datos }}</td>
+    		{% endfor %}
+    	</tr>
+    	{% endfor %}
+	</table>
+<!-- FIN Muestro el contenido del CSV -->
+
+	</body>
+</html>
+
+{% endblock %}

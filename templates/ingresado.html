@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Bienvenido{% endblock %}
+
+<!-- ARMO EL MENU PARA CONSULTAS DEL ARCHIVO CSV -->
+{% block navbar %}
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Flog</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/vercsv">Ver CSV</a></li>
+                <li><a href="/ultimasventas">Ultimas Ventas</a></li>
+                <li><a href="/producliente">Productos por Cliente</a></li>
+                <li><a href="/clienteprodu">Clientes por Producto</a></li>
+                <li><a href="/produvendido">Productos mas Vendidos</a></li>
+                <li><a href="/clientegasto">Clientes por Gasto</a></li>
+                <li><a href="/agregarventa">Agregar venta</a></li> <!-- Agregado para el Final -->
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block page_content %}
+<div class="page-header">    
+    <h1>Bienvenido a Honeybee Inc.</h1>
+        <h3>Instrucciones:</h3>
+            <h4>En la parte superior de la web se encuentran las diferentes opciones para obtener datos y estadísticas sobre las ventas de Honeybee Inc.</h4>
+            <h3>Alumno: Alberto Campagna / TP Paradigmas de Programación / IFTS 18 Analista de Sistemas -  Final 21/3/19</h3>
+
+</div>
+{% endblock %}
+

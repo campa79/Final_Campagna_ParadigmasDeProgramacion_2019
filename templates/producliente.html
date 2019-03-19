@@ -1,0 +1,12 @@
+{% extends "ingresado.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Buscar Producto por Cliente{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>Buscar Producto por Cliente</h1>
+    <h4>Ingrese el Nombre y Apellido del Cliente que desea consultar: (ó mínimo 3 letras)</h4>
+    {{ wtf.quick_form(form) }}
+</div>
+{% endblock %}

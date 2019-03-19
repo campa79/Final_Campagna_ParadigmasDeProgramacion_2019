@@ -1,0 +1,45 @@
+{% extends "ingresado.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Agregar Venta{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>AGREGAR VENTA NUEVA:</h1>
+</div>
+
+<h1></h1>
+		<form action="http://127.0.0.1:5000/agregarventa" method="POST">
+			<b>Codigo:</b>
+			<p><input type='text' name='codigo'></p>
+			<b>Producto:</b>
+			<p><input type='text' name='producto'></p>
+			<b>Cliente:</b>
+			<p><input type='text' name='cliente'></p>
+			<b>Precio:</b>
+			<p><input type='text' name='precio'></p>
+			<b>Cantidad:</b>
+			<p><input type='text' name='cantidad'></p>
+			<input type='submit' name='submit'>
+			{% if error != 0 %}
+				{% for error in error %}
+					<h2>{{ error }}</h2>
+				{% endfor %}
+			{% else %}
+				</form>
+				<table id="t01">
+		        <tr>
+		            {% for tit in titulo %}
+		                <th>{{ tit }}</th>
+		            {% endfor %}
+		        </tr>
+		        {% for item in tabla|reverse() %}
+		            <tr>
+		                {% for dentro in item %}
+		                    <td>{{ dentro }}</td>
+		                {% endfor %}
+		            </tr>
+		        {% endfor %}
+		        </table>
+			{% endif %}
+{% endblock %}

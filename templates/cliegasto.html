@@ -1,0 +1,25 @@
+{% extends "ingresado.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Productos mas vendidos{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>RESULTADO DE CLIENTES CON MAS GASTOS</h1>
+</div>
+
+<table>
+		<tr>
+			<th>Nombre Cliente</th>
+			<th>Total $</th>
+		</tr>
+		<tr>
+			{% for producto in form %}
+				<tr>
+					<td>{{ producto[0] }}</td>
+					<td>${{ producto[1] }}</td>
+				</tr>
+			{% endfor %}
+		</tr>
+	</table>
+{% endblock %}
