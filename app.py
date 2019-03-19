@@ -64,12 +64,6 @@ def ingresar():
                     flash('Bienvenido')
                     session['username'] = formulario.usuario.data
 
-            ##### AGREGADO POR SEBASTIAN #####
-                    cant = 10
-                    tablafinal, tablaorden = ultventfun()
-                    return render_template('ingresado.html', usuario=formulario.usuario.data, titulo=tablaorden, tabla=tablafinal[-cant:])
-            ##### AGREGADO POR SEBASTIAN #####
-
                     return render_template('ingresado.html')
                 registro = next(archivo_csv, None)
             else:
