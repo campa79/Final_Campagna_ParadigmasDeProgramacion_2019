@@ -5,12 +5,12 @@
 
 {% block page_content %}
 <div class="page-header">
-    <h1>AGREGAR VENTA NUEVA:</h1>
+    <h1>Agregar Venta Nueva:</h1>
 </div>
 
-<h1></h1>
+<h3></h3>
 		<form action="http://127.0.0.1:5000/agregarventa" method="POST">
-			<b>Codigo:</b>
+			<b>Código: (3 Letras y 3 números Ej: ABC123)</b>
 			<p><input type='text' name='codigo'></p>
 			<b>Producto:</b>
 			<p><input type='text' name='producto'></p>
@@ -23,8 +23,10 @@
 			<input type='submit' name='submit'>
 			{% if error != 0 %}
 				{% for error in error %}
-					<h2>{{ error }}</h2>
+					<h4>{{ error }}</h4>
 				{% endfor %}
+			
+			<!--
 			{% else %}
 				</form>
 				<table id="t01">
@@ -42,4 +44,5 @@
 		        {% endfor %}
 		        </table>
 			{% endif %}
+			-->
 {% endblock %}

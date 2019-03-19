@@ -78,9 +78,9 @@ def productosPorCliente(ventas, cliente):
     productos = [] #armo la lista vacia.
     for venta in ventas:
         if cliente.lower() in venta["CLIENTE"].lower():
-        #if venta["CLIENTE"] == cliente:
-            #productos.append(venta["PRODUCTO"]) #Solo le paso el producto vendido
-            productos.append(venta) #Le paso toda la linea de la venta con los datos
+            #if venta["CLIENTE"] == cliente:
+            productos.append(venta["PRODUCTO"]) #Solo le paso el producto vendido
+            #productos.append(venta) #Le paso toda la linea de la venta con los datos
     return productos
 
 # Funcion para Clientes por Producto #################################################
@@ -138,28 +138,63 @@ def clientesMasGastaron(f):
 
     return resultado
 
-### AGREGAR VENTA ####################################################################
-def agregarventa(cod, prod, clien, prec, cant):
-    archivoleer = open('datos.csv','r')
-    archivoesc = open('datos.csv','a', newline='')
-    archivoesc = csv.writer(archivoesc)
-    tablacsv = csv.DictReader(archivoleer)
-    cod = cod.upper()
+################################################ AGREGAR VENTA #######################################
+
+#Defino el orden de la tabla para Agregar ventas / Agregado para el Final.
+tablaordenada = ["CODIGO","PRODUCTO","CLIENTE","PRECIO","CANTIDAD"]
+
+def nuevaventa(cod, prod, clien, prec, cant):
+    readfile = open('datos.csv','r') #Leo el archivo datos.csv
+    writefile = open('datos.csv','a', newline='') #agrego el salto de línea para escribirlo
+    writefile = csv.writer(writefile)
+    tablacsv = csv.DictReader(readfile)
+    cod = cod.upper() #Pongo el código con mayúsculas
     prod = prod.title()
     clien = clien.title()
 
     ord = tablacsv.fieldnames
     dicc = {"CODIGO":cod,"PRODUCTO":prod,"CLIENTE":clien,"PRECIO":prec,"CANTIDAD":cant}
     formulario = []
-    for i in range(len(tablaorden)):
+    for i in range(len(tablaordenada)):
         formulario.append(dicc[ord[i]])
 
-    archivoesc.writerow(formulario)
+    writefile.writerow(formulario)
     return
-### AGREGAR VENTA ####################################################################
+################################################ AGREGAR VENTA #######################################
 
 
+###################### CHEQUEOS PARA AGREGAR VENTA ##################################################
+def ventacheck(cod, prod, clien, prec, cant):
+    lista = []
+    dicc = {"Código":cod,"Producto":prod,"Cliente":clien,"Precio":prec,"Cantidad":cant}
+    for i in dicc:
+        if dicc[i] == "" or dicc[i].isspace():
+            lista.append(f"Debes completar el campo {i}.")
+    if len(lista) >= 1:
+        return lista
 
+    if len(prod) < 3:
+        lista.append("El Producto tiene que tener mas de 3 caracteres. Ingresar nuevamente.")
+
+    if len(clien) < 3:
+        lista.append("El Cliente tiene que tener mas de 3 caracteres. Ingresar nuevamente.")
+
+    if not (cod[0:3].isalpha()) or not (cod[3:6].isnumeric()) or len(cod)!=6:
+        lista.append("El Código debe tener 3 letras y 3 números. Ingresar nuevamente.")
+
+    try:
+        if not float(prec):
+            lista.append("El Precio debe ser un número. Ingresar nuevamente.")
+    except ValueError:
+        lista.append("El precio no es un numero. Ingresar nuevamente.")
+
+    try:
+        if not float(cant).is_integer():
+            lista.append("La Cantidad debe ser un número. Ingresar nuevamente.")
+    except ValueError:
+        lista.append("La Cantidad no es un numero. Ingresar nuevamente")
+    return lista
+###################### CHEQUEOS PARA AGREGAR VENTA ##################################################
 
 #############################################################################
 ##################### Códigos de prueba para consola ########################

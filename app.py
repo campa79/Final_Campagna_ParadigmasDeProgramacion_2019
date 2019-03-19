@@ -9,6 +9,8 @@ from flask_bootstrap import Bootstrap
 from flask_script import Manager
 from forms import LoginForm, SaludarForm, RegistrarForm
 import funciones
+from funciones import nuevaventa
+from funciones import ventacheck
 
 import numpy as np
 import pandas as pd
@@ -216,14 +218,14 @@ def agregarventa():
         prec = request.form['precio']
         cant = request.form['cantidad']
 
-        #error = loadcsv(cod, prod, clien, prec, cant)
-        #if error:
-            #return render_template('agregarventa.html', error=error)
+        error = ventacheck(cod, prod, clien, prec, cant)
+        if error:
+            #print ("Ingresaste uno o mas campos mal. Volvé a cargar el producto.")
+            return render_template('agregarventa.html', error=error)
 
-        agregarventa(cod, prod, clien, prec, cant)
+        nuevaventa(cod, prod, clien, prec, cant)
         return redirect(url_for('agregarventa'))
-    #tablafinal, tablaorden = ultventfun()
-    return render_template('agregarventa.html')#, error=0, titulo=tablaorden, tabla=tablafinal[-7:])
+    return render_template('agregarventa.html')
 ############################ AGREGAR VENTA #### PARA EL FINAL ######################################
 ####################################################################################################
 
