@@ -11,6 +11,7 @@ from forms import LoginForm, SaludarForm, RegistrarForm
 import funciones
 from funciones import nuevaventa
 from funciones import ventacheck
+from funciones import loadcsv
 
 import numpy as np
 import pandas as pd
@@ -198,12 +199,12 @@ def cliegasto():
         return render_template('cliegasto.html', form=formulario)
 ########################## CLIENTE POR GASTOS ##########################
 
-####################################################################################################
-############################ AGREGAR VENTA #### PARA EL FINAL ######################################
+##################################################################################
+############################ AGREGAR VENTA #### PARA EL FINAL ####################
 @app.route('/agregarventa', methods=['GET', 'POST'])
 def agregarventa():
     if 'username' not in session:
-        return redirect(url_for('ingresar'))
+        return redirect(url_for('ingresar')) #Si no esta logueado vuelve al inicio de sesión
 
     if request.method == "POST":
         cod = request.form['codigo']
@@ -218,10 +219,10 @@ def agregarventa():
             return render_template('agregarventa.html', error=error)
 
         nuevaventa(cod, prod, clien, prec, cant)
-        return redirect(url_for('agregarventa'))
+        return redirect(url_for('ultimasventas')) #Ingreso venta y redirecciona a ultimas ventas
     return render_template('agregarventa.html')
-############################ AGREGAR VENTA #### PARA EL FINAL ######################################
-####################################################################################################
+############################ AGREGAR VENTA #### PARA EL FINAL #####################
+###################################################################################
 
 
 if __name__ == "__main__":

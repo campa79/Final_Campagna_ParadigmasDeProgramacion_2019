@@ -25,24 +25,5 @@
 				{% for error in error %}
 					<h4>{{ error }}</h4>
 				{% endfor %}
-			
-			<!--
-			{% else %}
-				</form>
-				<table id="t01">
-		        <tr>
-		            {% for tit in titulo %}
-		                <th>{{ tit }}</th>
-		            {% endfor %}
-		        </tr>
-		        {% for item in tabla|reverse() %}
-		            <tr>
-		                {% for dentro in item %}
-		                    <td>{{ dentro }}</td>
-		                {% endfor %}
-		            </tr>
-		        {% endfor %}
-		        </table>
 			{% endif %}
-			-->
 {% endblock %}

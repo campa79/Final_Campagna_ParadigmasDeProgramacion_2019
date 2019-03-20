@@ -14,13 +14,20 @@
 <h1>Resultados de la Búsqueda</h1>
 
 <table width=100%>
-	<tr>
-	<th>CLIENTE</th>
-</tr>
-	{% for item in lista %}
     <tr>
-    	<td>{{ item }}</td>
-    	<td>{{ item["PRODUCTO"] }}</td>
+    <th>CODIGO</th>
+    <th>PRODUCTO</th>
+    <th>CLIENTE</th>
+    <th>CANTIDAD</th>
+    <th>PRECIO</th>
+</tr>
+    {% for item in lista %}
+    <tr>
+        <td>{{ item["CODIGO"] }}
+        <td>{{ item["PRODUCTO"] }}
+        <td>{{ item["CLIENTE"] }}
+        <td>{{ item["CANTIDAD"] }}
+        <td>{{ item["PRECIO"] }}
     </tr>
     {% endfor %}
 

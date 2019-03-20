@@ -78,9 +78,7 @@ def productosPorCliente(ventas, cliente):
     productos = [] #armo la lista vacia.
     for venta in ventas:
         if cliente.lower() in venta["CLIENTE"].lower():
-            #if venta["CLIENTE"] == cliente:
-            productos.append(venta["PRODUCTO"]) #Solo le paso el producto vendido
-            #productos.append(venta) #Le paso toda la linea de la venta con los datos
+            productos.append(venta) #Le paso toda la linea de la venta con los datos
     return productos
 
 # Funcion para Clientes por Producto #################################################
@@ -88,8 +86,7 @@ def clientesPorProducto(ventas, producto):
     clientes = [] #armo la lista vacia.
     for venta in ventas:
         if producto.lower() in venta["PRODUCTO"].lower():
-        #if venta["PRODUCTO"] == producto:
-            clientes.append(venta["CLIENTE"])
+            clientes.append(venta)
     return clientes
 
 # Funcion para Productos Mas Vendidos ################################################
@@ -131,7 +128,7 @@ def clientesMasGastaron(f):
         valor = 0
         for venta in ventas:
             if venta["CLIENTE"] == j:
-                valor = valor + int(venta["PRECIO"])*int(venta["CANTIDAD"])
+                valor = valor + float(venta["PRECIO"])*int(venta["CANTIDAD"])
         resultado[j] = valor
 
     resultado = sorted(resultado.items(), key = lambda t:t[1], reverse=True)
@@ -153,7 +150,7 @@ def nuevaventa(cod, prod, clien, prec, cant):
     clien = clien.title()
 
     ord = tablacsv.fieldnames
-    dicc = {"CODIGO":cod,"PRODUCTO":prod,"CLIENTE":clien,"PRECIO":prec,"CANTIDAD":cant}
+    dicc = {"CODIGO":cod,"PRODUCTO":prod,"CLIENTE":clien,"PRECIO":prec,"CANTIDAD":cant} #Armo el diccionario
     formulario = []
     for i in range(len(tablaordenada)):
         formulario.append(dicc[ord[i]])
@@ -181,6 +178,10 @@ def ventacheck(cod, prod, clien, prec, cant):
 
     if not (cod[0:3].isalpha()) or not (cod[3:6].isnumeric()) or len(cod)!=6:
         lista.append("El Código debe tener 3 letras y 3 números. Ingresar nuevamente.")
+
+    #Salida del IF para cuando la venta ingresada cumple todos los requisitos
+    #if (cod[0:3].isalpha()) and (cod[3:6].isnumeric()) and len(cod)!=6 and len(clien) < 3 and len(prod) < 3:
+        #lista.append("Venta ingresada con éxito.")
 
     try:
         if not float(prec):
